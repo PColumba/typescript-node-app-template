@@ -25,8 +25,9 @@ FROM node:18-alpine as stage2
 
 WORKDIR /app
 
-COPY --from=stage1 /app/dist /dist
-COPY --from=stage1 /app/node_modules /node_modules
+COPY --from=stage1 /app/dist ./dist
+COPY --from=stage1 /app/node_modules ./node_modules
+COPY --from=stage1 /app/package*.json ./
 
 # Define the command to start your Node.js app
 CMD ["npm", "start"]
